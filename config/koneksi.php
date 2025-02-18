@@ -2,7 +2,7 @@
 $hostname = 'localhost';
 $userdb = 'root';
 $passdb = '';
-$namedb = 'ukk2025_xiipplg2_7978';
+$namedb = 'UKK2025_XIIPPLG2_7978';
 
 $koneksi = mysqli_connect($hostname, $userdb, $passdb, $namedb);
 
