@@ -19,7 +19,7 @@ if ($_SESSION['status'] != 'login') {
     
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:rgb(52, 227, 250);">
   <div class="container">
     <a class="navbar-brand" href="index.php">MY TO DO LIST</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@ if ($_SESSION['status'] != 'login') {
       <div class="navbar-nav me-auto">
        <a href="home.php" class="nav-link">Home</a>
        <a href="tugas.php" class="nav-link">tugas</a>
-       <a href="categories.php" class="nav-link">kategori</a>
+       <a href="categories.php" class="nav-link">Tambah Tugas</a>
       </div>
 
       <a href="../config/aksi_logout.php" class="btn btn-outline-danger m-1">Keluar</a> 

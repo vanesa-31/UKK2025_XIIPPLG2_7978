@@ -42,7 +42,7 @@ if ($_SESSION['status'] != 'login') {
 <div class="container mt-3">
     <div class="row">
     <?php
-    $query = mysqli_query($koneksi, "SELECT * FROM foto WHERE usersid='$usersid'");
+    $query = mysqli_query($koneksi, "SELECT * FROM tasks WHERE usersid='$usersid'");
     while($data = mysqli_fetch_array($query)){
         ?>
     <div class="col-md-3">
@@ -52,8 +52,8 @@ if ($_SESSION['status'] != 'login') {
                 <div class="card-footer text-center">
                   <a href="../config/proses_like.php?fotoid=<?php echo $data['fotoid']?>" type="submit" name="suka"><i class="fa-regular fa-heart m-1"></i></a> 
                   <?php
-                  $fotoid = $data['fotoid'];
-                  $like = mysqli_query($koneksi, "SELECT * FROM likefoto WHERE fotoid='$fotoid'");
+                  $tugasid = $data['tugasoid'];
+                  $like = mysqli_query($koneksi, "SELECT * FROM likefoto WHERE tugasid='$tugasid'");
                   echo mysqli_num_rows($like). ' Suka';
                    ?>
                   <a href=""><i class="fa-regular fa-comment m-1"></i></a> 3 Komentar
