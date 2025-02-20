@@ -1,69 +1,50 @@
-<?php
-session_start();
-include "../config/koneksi.php";
-$userid = $_SESSION['userid'];
-if ($_SESSION['status'] != 'login') {
-    echo "<script>
-    alert('Anda belum login');
-    location.href='../index.php';
-    </script>";
-}
+<h1 class="mt-4">My To Do List</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Welcome My To Do List!</li>
+</ol>
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../asset/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>MY TO DO LIST</title>
-    
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-    <a class="navbar-brand" href="index.php">MY TO DO LIST</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto">
-       <a href="home.php" class="nav-link">Home</a>
-       <a href="#" class="nav-link"></a>
-       <a href="#" class="nav-link"></a>
-      </div>
-
-      <a href="../config/aksi_logout.php" class="btn btn-outline-danger m-1">Keluar</a> 
-    </div>
-  </div>
-</nav>
-
-<div class="container mt-3">
-    <div class="row">
-    <?php
-    $query = mysqli_query($koneksi, "SELECT * FROM tasks WHERE usersid='$usersid'");
-    while($data = mysqli_fetch_array($query)){
-        ?>
-    <div class="col-md-3">
-            <div class="card">
-                <img src="../asset/img/<?php echo $data['lokasifile']?>" class="card-img-top" 
-                title="<?php echo $data['judulfoto']?>" style="height:12rem;">
-                <div class="card-footer text-center">
-                  <a href="../config/proses_like.php?fotoid=<?php echo $data['fotoid']?>" type="submit" name="suka"><i class="fa-regular fa-heart m-1"></i></a> 
-                  <?php
-                  $tugasid = $data['tugasoid'];
-                  $like = mysqli_query($koneksi, "SELECT * FROM likefoto WHERE tugasid='$tugasid'");
-                  echo mysqli_num_rows($like). ' Suka';
-                   ?>
-                  <a href=""><i class="fa-regular fa-comment m-1"></i></a> 3 Komentar
-      </div>
+<div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card text-white mb-4" style="background-color: rgb(67, 195, 255);">
+                <div class="card-body">
+                <?php
+                    echo mysqli_num_rows(mysqli_query($koneksi, "SELECT*FROM categories"));
+                ?>
+                Total Kategori</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="?page=categories">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
         </div>
-    <?php } ?>
+        <div class="col-xl-3 col-md-6">
+            <div class="card text-white mb-4" style="background-color: rgb(67, 195, 255);">
+                <div class="card-body">
+                <?php
+                    echo mysqli_num_rows(mysqli_query($koneksi, "SELECT*FROM tasks"));
+                ?>
+                Total tugas</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="?page=tasks">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="card col-md-6" style="background-color: rgb(173, 244, 253);">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <td width="200">Nama</td>
+                <td width="1">:</td>
+                <td><?php echo $_SESSION['users']['nama']; ?></td>
+            </tr>
+            <tr>
+                <td width="100">Tanggal Login</td>
+                <td width="1">:</td>
+                <td><?php echo date('d-m-Y'); ?></td>
+            </tr>
+        </table>
     </div>
 </div>
-   
-<script type="text/javascript" src="../asset/js/bootstrap.min.js"></script>
-</body>
-</html>
